@@ -1,0 +1,34 @@
+```python
+import datetime
+import hashlib
+
+class Block:
+    def __init__(self, index, timestamp, data, previous_hash):
+        self.index = index
+        self.timestamp = timestamp
+        self.data = data
+        self.previous_hash = previous_hash
+        self.hash = self.calculate_hash()
+
+    def calculate_hash(self):
+        block_info = str(self.index) + str(self.timestamp) + str(self.data) + str(self.previous_hash)
+        return hashlib.sha256(block_info.encode()).hexdigest()
+
+class Transaction:
+    def __init__(self, sender, receiver, amount):
+        self.sender = sender
+        self.receiver = receiver
+        self.amount = amount
+
+# Rest of your blockchain-related code can follow here...
+```
+
+You can then utilize these classes within your Python file or create instances of `Block` and `Transaction` objects to represent data in your blockchain.
+
+For instance, you could create a block:
+
+```python
+# Create a genesis block
+genesis_block = Block(0, datetime.datetime.now(), "Genesis Block", "0")
+```
+
